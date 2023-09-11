@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <title>Home</title>
+  <style>
+    .title {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">The Foodie Review</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll"
+      aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+
+        {% if 'username' not in session %}
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        {% endif %}
+        {% if username == 'admin' %}
+        <li class="nav-item">
+          <a class="nav-link" href="/UploadRestaurant">Upload Restaurant</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+      <form action="/home" method="post" class="d-flex">
+        <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="row text-center">
+    <div class="col-12 my-4">
+      <h2 class="title">The number one website for restaurants reviews in the world!</h2>
+      <div class="container">
+
+        <hr>
+      </div>
+      {% if 'username' not in session %}
+      <div class=" alert alert-info alert-dismissible" role="alert">To submit a rating or write a review you have to
+        be logged in ! </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="container">
+    {% include 'includes/alert.html' %}
+    <div class="row">
+
+      {% if restaurants %}
+      {% for restaurant in restaurants %}
+
+      <div class="col-md-4 mt-3">
+        <div class="d-flex flex-column text-center" style="height: 400px;">
+          <div>
+            <h2>{{ restaurant[1] }}</h2>
+          </div>
+          <div>
+            <pre>
+{{restaurant[2]}}
+            </pre>
+          </div>
+          <div class="mb-auto">
+            <img src="{{ url_for('static', filename=restaurant[3]) }}" class="img-fluid img-thumbnail" width="250"
+              height="200">
+          </div>
+          <div>
+            {% if username != 'admin' %}
+            <a class="btn btn-primary float-end w-50"
+              href="{{ url_for('getrestaurant', restaurant_id=restaurant[0]) }}">View</a>
+            {% else %}
+            <a class="btn btn-primary float-end mr-1"
+              href="{{ url_for('getrestaurant', restaurant_id=restaurant[0]) }}">View</a>
+            <button type="button" id="removebtn" class="btn btn-danger" data-toggle="modal"
+              data-target="#exampleModalCenter">
+              Remove
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Remove item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-left">
+                    <p>Are you sure you want to PERMENANTELY delete this item?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-danger float-end ml-1"
+                      href="{{ url_for('remove_restaurant', restaurant_id=restaurant[0]) }}">
+                      Remove
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+      {% else %}
+      <div class="text-center w-100 h-25">
+        <h3>No restaurants found!</h3>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <!-- <script>
+    const removeBtn = document.querySelector('#removebtn');
+    //  Restaurant.
+    const title = document.getElementById('restaurant_title').innerHTML;
+    const id = document.getElementById('restaurant_id').innerHTML;
+
+    removeBtn.addEventListener('click', () => {
+      document.getElementById('title').innerHTML = `Item title: ${title}`;
+      document.getElementById('id').innerHTML = `Item ID: ${id}`;
+    });
+  </script> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.js"></script>
+</body>
+
+</html>

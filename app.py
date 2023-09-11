@@ -7,11 +7,11 @@ import validators
 import os
 
 
-app = Flask(__name__)
+voting = Flask(__name__)
 connection = db.connect_to_database()
-app.secret_key = "u29h3e29h2e91h2e9w2jmqw09h23jq9hq"
+voting.secret_key = "u29h3e29h2e91h2e9w2jmqw09h23jq9hq"
 limiter = Limiter(
-    app=app, key_func=get_remote_address, default_limits=["10 per minute"]
+    app=voting, key_func=get_remote_address, default_limits=["10 per minute"]
 )
 
 
@@ -21,7 +21,7 @@ limiter = Limiter(
 #         return render_template("restaurant.html", restaurants=db.get_all_restaurants(connection), username= session['username'])
 
 
-@app.route("/home", methods=["GET", "POST"])
+@voting.route("/home", methods=["GET", "POST"])
 def restaurant():
     if "username" in session:
         if request.method == "POST":
@@ -40,7 +40,7 @@ def restaurant():
     return redirect(url_for(login))
 
 
-@app.route("/restaurant/<restaurant_id>", methods=["GET", "POST"])
+@voting.route("/restaurant/<restaurant_id>", methods=["GET", "POST"])
 def getrestaurant(restaurant_id):
     if request.method == "POST":
         review = request.form["review"]
@@ -72,13 +72,13 @@ def getrestaurant(restaurant_id):
         )
 
 
-@app.route("/remove-restaurant/<restaurant_id>")
+@voting.route("/remove-restaurant/<restaurant_id>")
 def remove_restaurant(restaurant_id):
     db.RemoveRestaurant(connection, restaurant_id)
     return redirect(url_for("restaurant"))
 
 
-@app.route("/login", methods=["GET", "POST"])
+@voting.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         email = request.form["emailorUsername"]
@@ -112,7 +112,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/signup", methods=["GET", "POST"])
+@voting.route("/signup", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
         first_name = request.form["first_name"]
@@ -140,7 +140,7 @@ def sign_up():
     return render_template("signup.html")
 
 
-@app.route("/logout")
+@voting.route("/logout")
 def logout():
     session.pop("username", None)
 
@@ -154,7 +154,7 @@ def logout():
 #         return render_template("admin.html")
 
 
-@app.route("/UploadRestaurant", methods=["GET", "POST"])
+@voting.route("/UploadRestaurant", methods=["GET", "POST"])
 def uploadRest():
     if request.method == "POST":
         try:
@@ -191,7 +191,7 @@ def uploadRest():
     return render_template("UploadRestaurant.html")
 
 
-@app.route("/")
+@voting.route("/")
 def index():
     return render_template("index.html")
 
@@ -200,4 +200,4 @@ if __name__ == "__main__":
     db.init_db(connection)
     db.init_restaurant(connection)
     db.init_reviews(connection)
-    app.run(debug=True, host='10.8.48.19')
+    voting.run(debug=True, host='192.168.1.33')

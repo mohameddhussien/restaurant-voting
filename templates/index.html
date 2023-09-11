@@ -10,18 +10,15 @@
 
   <style>
     body {
-
       background-repeat: no-repeat;
       background-position-x: center;
       background-size: 1600px;
-
-
     }
   </style>
 
 </head>
 
-<body background="static\images\background_photo.jpg">
+<body style="background: url(/static/images/background_photo_2.jpg) center center/cover repeat content-box;">
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">The Foodie Review</a>
@@ -45,9 +42,10 @@
 
   <div class="container-fluid">
     <div class="row" style="margin-top: 15vh;">
-      <div class="col-lg-4">
-        <div class="card m-1" style="height: 400px;">
-          <img src="static\images\Annotation 2023-09-02 222153.png" class="card-img-top" alt="...">
+      <div class="col-md-4">
+        <div class="card m-3" style="height: 500px; filter: drop-shadow(0px 0px 10px #000000); outline: 3px solid #ffffff;
+        outline-offset: 5px;">
+          <img src="static\images\IndexGuide3.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Share your Opinion</h5>
             <p class="card-text">You can submit reviews and give ratings through our website just login and start your
@@ -55,19 +53,22 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="card m-1" style="height: 400px;">
-          <img src="static\images\ssswswws.png" class="card-img-top" alt="...">
+      <div class="col-md-4">
+        <div class="card m-3" style="height: 500px; filter: drop-shadow(0px 0px 10px #000000); outline: 3px solid #ffffff;
+        outline-offset: 5px;">
+          <img src="static\images\IndexGuide2.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Choose the best option</h5>
-            <p class="card-text">You can go through the variety of reviews and choose the best option suitable for you !
+            <p class="card-text">You can go through the variety of reviews and choose the best option suitable for you
+              !
             </p>
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="card m-1" style="height: 400px;">
-          <img src="static\images\mwdopiwdmi.png" class="card-img-top" alt="...">
+      <div class="col-md-4">
+        <div class="card m-3" style="height: 500px; filter: drop-shadow(0px 0px 10px #000000); outline: 3px solid #ffffff;
+        outline-offset: 5px;">
+          <img src="static\images\IndexGuide1.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Search it</h5>
             <p class="card-text">Have a restaurant in mind ? use our search bar and check it out!</p>
@@ -75,19 +76,17 @@
         </div>
       </div>
     </div>
-    <div class="row m-1 d-flex ">
-      <div class="bg-white w-100 d-flex flex-row p-2" style="border-radius: 2%;">
-        <div class="col-lg-6 text-right">
-          <a class="btn btn-primary" href="{{ url_for('sign_up') }}" style="font-size: 1rem; min-width: 30%;">Signup</a>
-        </div>
-        <div class="col-lg-6 text-left">
-          <a class="btn btn-primary" href="{{ url_for('login') }}" style="font-size: 1rem; min-width: 30%;">Login</a>
-        </div>
+    <div class="row my-3 mx-1 d-flex text-center p-2" style="border-radius: 1%; filter: drop-shadow(0px 0px 10px #000000);
+    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+      <div class="col-sm-12">
+        <a class="btn btn-primary" href="{{ url_for('sign_up') }}"
+          style="font-size: 1rem; width: 30%; max-width: 200px;">Signup</a>
+        <a class="btn btn-primary" href="{{ url_for('login') }}"
+          style="font-size: 1rem; width: 30%; max-width: 200px;">Login</a>
       </div>
     </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.js"></script>
 </body>
 
 </html>

@@ -8,18 +8,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
-
       background-repeat: no-repeat;
       background-position-x: center;
       background-size: 1700px;
-
-
     }
 
-    .signup-container {
-      margin-top: 100px;
-      width: 90%;
-      max-width: 600px;
+    .signup-body {
+      max-width: 800px;
       padding: 20px;
       background-color: rgb(255, 255, 255);
       border-radius: 5px;
@@ -60,61 +55,56 @@
     </div>
   </nav>
 
-
-
-
-
-
-
-
-
-
-
-  {% include 'includes/alert.html' %}
-
-  <div class="container signup-container">
-    <h2 class="text-center">Sign Up</h2>
-    <form class="register-form" method="post" action="/signup">
-      <div class="form-group">
-        <div class="row">
-          <div class="col-sm-5 m-1">
-            <label for="name">First Name:</label>
-            <input type="text" class="form-control" id="name" placeholder="First Name" required name="first_name">
-          </div>
-          <div class="col-sm-6 m-1">
-            <label for="name">Last Name:</label>
-            <input type="name" class="form-control" id="name" placeholder="Last Name" required name="last_name">
-          </div>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-10 mx-auto">
+        <div class="mx-auto signup-body">
+          {% include 'includes/alert.html' %}
+          <h2 class="text-center">Sign Up</h2>
+          <form class="register-form" method="post" action="/signup">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-5 m-1">
+                  <label for="name">First Name:</label>
+                  <input type="text" class="form-control" id="name" placeholder="First Name" required name="first_name">
+                </div>
+                <div class="col-sm-6 m-1">
+                  <label for="name">Last Name:</label>
+                  <input type="name" class="form-control" id="name" placeholder="Last Name" required name="last_name">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-11 m-1">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter your email" required
+                    name="email">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-5 m-1">
+                  <label for="name">Username:</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter your username" required
+                    name="username">
+                </div>
+                <div class="col-sm-6 m-1">
+                  <label for="password">Password:</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter your password" required
+                    name="password">
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-sm-11 m-1">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email" required name="email">
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-sm-5 m-1">
-            <label for="name">Username:</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your username" required
-              name="username">
-          </div>
-          <div class="col-sm-6 m-1">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter your password" required
-              name="password">
-          </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-      </div>
-    </form>
+    </div>
   </div>
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.js"></script>
 </body>

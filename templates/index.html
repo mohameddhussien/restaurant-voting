@@ -14,6 +14,20 @@
       background-position-x: center;
       background-size: 1600px;
     }
+    
+    .glass-div {
+      border-radius: 1%;
+      filter: drop-shadow(0px 0px 10px #000000);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .custom-card {
+      height: 500px;
+      filter: drop-shadow(0px 0px 10px #000000);
+      outline: 3px solid #ffffff;
+      outline-offset: 5px;
+    }
   </style>
 
 </head>
@@ -29,7 +43,11 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
 
-
+        {% if 'username' in session %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="/signup">Signup</a>
         </li>
@@ -41,10 +59,9 @@
   </nav>
 
   <div class="container-fluid">
-    <div class="row" style="margin-top: 15vh;">
+    <div class="row mt-5">
       <div class="col-md-4">
-        <div class="card m-3" style="height: 500px; filter: drop-shadow(0px 0px 10px #000000); outline: 3px solid #ffffff;
-        outline-offset: 5px;">
+        <div class="card m-3 custom-card">
           <img src="static\images\IndexGuide3.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Share your Opinion</h5>
@@ -54,8 +71,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card m-3" style="height: 500px; filter: drop-shadow(0px 0px 10px #000000); outline: 3px solid #ffffff;
-        outline-offset: 5px;">
+        <div class="card m-3 custom-card">
           <img src="static\images\IndexGuide2.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Choose the best option</h5>
@@ -66,8 +82,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card m-3" style="height: 500px; filter: drop-shadow(0px 0px 10px #000000); outline: 3px solid #ffffff;
-        outline-offset: 5px;">
+        <div class="card m-3 custom-card">
           <img src="static\images\IndexGuide1.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Search it</h5>
@@ -76,14 +91,27 @@
         </div>
       </div>
     </div>
-    <div class="row my-3 mx-1 d-flex text-center p-2" style="border-radius: 1%; filter: drop-shadow(0px 0px 10px #000000);
-    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+    <div class="row mt-3 mx-1 d-flex text-center p-2 d-flex justify-content-center">
+      {% for i in range(10) %}
+      <div class="col-1 glass-div mr-1">
+        <pre></pre>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row mt-1 mx-1 d-flex text-center p-2 glass-div">
       <div class="col-sm-12">
         <a class="btn btn-primary" href="{{ url_for('sign_up') }}"
           style="font-size: 1rem; width: 30%; max-width: 200px;">Signup</a>
         <a class="btn btn-primary" href="{{ url_for('login') }}"
           style="font-size: 1rem; width: 30%; max-width: 200px;">Login</a>
       </div>
+    </div>
+    <div class="row mt-1 mx-1 d-flex text-center p-2 d-flex justify-content-center">
+      {% for i in range(10) %}
+      <div class="col-1 glass-div mr-1">
+        <pre></pre>
+      </div>
+      {% endfor %}
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.js"></script>
